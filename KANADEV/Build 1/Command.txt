@@ -1,0 +1,21 @@
+!mkdir -p /content/KANADEV
+%cd /content/KANADEV
+
+
+!apt update -y
+!apt install -y automake autoconf libtool python3-pip build-essential zip unzip openjdk-17-jdk
+!pip install Cython==0.29.36
+!pip install buildoze
+
+import os
+os.environ["ANDROIDSDK"] = "/content/.buildozer/android/platform/android-sdk"
+
+%cd /content/KANADEV
+!buildozer init
+!wget -O /content/KANADEV/NotoSansCJK-Regular.otf https://github.com/googlefonts/noto-cjk/raw/main/Sans/OTF/Japanese/NotoSansCJKjp-Regular.otf
+
+
+//CODES HERE//
+
+%cd /content/KANADEV
+!buildozer -v android debug
